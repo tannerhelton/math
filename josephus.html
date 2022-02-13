@@ -19,7 +19,7 @@
     <![endif]-->
 </head>
 <body>
-
+<script src="js/p5.min.js"></script>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 <div class="container">
 
@@ -38,10 +38,10 @@ Math by Tanner Helton
 
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 <ul class="nav navbar-nav">
-<li class="active">
+<li>
   <a href="index.html">About</a>
 </li>
-<li>
+<li class="active">
 <a href="josephus.html">Josephus Problem</a>
 </li>
 <li>
@@ -63,14 +63,20 @@ Math by Tanner Helton
 
 <div class="row">
 <div class="col-lg-12">
-<h1 class="page-header">About
-<small>Tanner Helton</small>
+<h1 class="page-header">Josephus Problem
+<!-- <small>Tanner Helton</small> -->
 </h1>
 </div>
 </div>
 
+<div id="josephus">
+    <p>Number of soldiers:<input id="soldierCount" type="number" value="8"></p>
+    <button onClick="run()">Run</button>
+    <button onClick="stop()">Stop</button>
+    <script src="/sketches/josephus.js"></script>
+</div>
 
-<div class="row">
+<!-- <div class="row">
 <div class="col-md-6 portfolio-item">
 <a href="#">
 <img class="img-responsive" src="" alt="">
@@ -132,9 +138,9 @@ Math by Tanner Helton
 </h3>
 <p>Upon yielding, kind sea subdue very seed sixth them lesser one lesser there earth days were multiply so sixth gathering fifth that man fowl made.</p>
 </div>
-</div>
+</div> -->
 
-<div class="row text-center">
+<!-- <div class="row text-center">
 <div class="col-lg-12">
 <ul class="pagination">
 <li>
@@ -160,9 +166,9 @@ Math by Tanner Helton
 </li>
 </ul>
 </div>
-</div>
+</div> -->
 
-</div>
+<!-- </div> -->
 
 <footer>
 <div class="footer-blurb">
