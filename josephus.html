@@ -19,6 +19,8 @@
     <![endif]-->
 </head>
 <body>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="js/p5.min.js"></script>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 <div class="container">
@@ -69,10 +71,20 @@ Math by Tanner Helton
 </div>
 </div>
 
+<div>
+    <h4>Equations:</h4>
+    <p>For our base case, let's use \(T(1) = 1\) and \(T(2) = 1\)</p>
+    <p>For the recursion, we use \(T(2n) = 2T(n)-1\) for the evens and \(T(2n+1) = 2T(n)+1\) for the odds</p>
+    <!-- document.getElementById('resultsForJosephus').innerText=runJosephus(document.getElementById('numSoldiers').value) -->
+    <p>Number of soldiers:<input id="numSoldiers" type="number" placeholder="41"><button onclick="document.getElementById('resultsForJosephus').innerHTML=0;runJosephus(document.getElementById('numSoldiers').value)">Run</button></p>
+    Results: <p id="resultsForJosephus"></p>
+</div>
+<hr>
+
 <div id="josephus">
-    <p>Number of soldiers:<input id="soldierCount" type="number" value="8"></p>
+    <p>Number of soldiers:<input id="soldierCount" onchange="clearScreen()" type="number" value="8"></p>
     <button onClick="run()">Run</button>
-    <button onClick="stop()">Stop</button>
+    <button onClick="clearScreen()">Stop</button>
     <script src="/sketches/josephus.js"></script>
 </div>
 

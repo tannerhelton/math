@@ -1,39 +1,49 @@
+var positions;
 var RUN = false;
-var TIME = 0;
+var TIME = 1;
 function setup() {
   var myCanvas = createCanvas(
     document.getElementById("josephus").offsetWidth,
     400
   );
   myCanvas.parent("josephus");
-}
-
-function draw() {
-  background(255);
   translate(document.getElementById("josephus").offsetWidth / 2, 200);
+  rotate((3 * PI) / 2);
+  background(255);
+  clearScreen();
+}
+var count = 1;
+function draw() {
+  TIME++;
+  translate(document.getElementById("josephus").offsetWidth / 2, 200);
+  rotate((3 * PI) / 2);
+  if (RUN) {
+    if (TIME % 100 == 0) {
+      fill(255, 0, 0);
+      circle(
+        positions[count % positions.length].x,
+        positions[count % positions.length].y,
+        10
+      );
+      count += 2;
+    }
+  }
+}
+function clearScreen() {
+  RUN = false;
+  background(255);
   noFill();
   circle(0, 0, 300);
-  fill(0);
+  fill(200);
   var soldierCount = document.getElementById("soldierCount").value;
-  var positions = circlePos(soldierCount);
+  positions = circlePos(soldierCount);
   for (var i = 0; i < soldierCount; i++) {
     circle(positions[i].x, positions[i].y, 10);
   }
-  if (RUN) {
-    josephusKill(positions, TIME);
-    TIME++;
-  }
 }
 
-function josephusKill(pos, t) {
-  var killNum = 1;
-  for (var i = 0; i < killNum; i++) {
-    fill(255, 0, 0);
-    circle(pos[i].x, pos[i].y, 7);
-  }
-  if (t % 100 == 0) {
-    killNum++;
-  }
+function run() {
+  RUN = true;
 }
 
 function circlePos(num) {
@@ -49,15 +59,29 @@ function circlePos(num) {
   return pos;
 }
 
-function run() {
-  RUN = true;
-}
-function stop() {
-  RUN = false;
-}
-
-function sleep(millisecondsDuration) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, millisecondsDuration);
-  });
+function runJosephus(input) {
+  // if (input == 1) return 1;
+  // if (input == 2) return 1;
+  // return input % 2 == 0
+  //   ? 2 * runJosephus(input / 2) - 1
+  //   : 2 * runJosephus((input - 1) / 2) + 1;
+  if (input == 1) {
+    document.getElementById("resultsForJosephus").innerHTML += "<br>T(1)=1";
+    return 1;
+  }
+  if (input == 2) {
+    document.getElementById("resultsForJosephus").innerHTML += "<br>T(2)=1";
+    return 2;
+  }
+  if (input % 2 == 0) {
+    var val = 2 * runJosephus(input / 2) - 1;
+    document.getElementById("resultsForJosephus").innerHTML +=
+      "<br>T(" + input + ")=" + val;
+    return val;
+  } else {
+    var val = 2 * runJosephus((input - 1) / 2) + 1;
+    document.getElementById("resultsForJosephus").innerHTML +=
+      "<br>T(" + input + ")=" + val;
+    return val;
+  }
 }
